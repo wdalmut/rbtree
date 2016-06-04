@@ -106,6 +106,21 @@ static char *test_rotate_to_a_new_root_from_right_twice_and_internal_rotation() 
     return 0;
 }
 
+static char *test_double_root_rotation() {
+    leaf_t *root = rbtree_create_node(100);
+    root->color = BLACK_NODE;
+
+    root = rbtree_put(root, 150);
+    root = rbtree_put(root, 120);
+
+    mu_assert("Root should not be null", root != NULL);
+    mu_assert("Root should be equals to 120", root->value == 120);
+    mu_assert("Root left child should be equals to 100", root->left->value == 100);
+    mu_assert("Root right child should be equals to 150", root->right->value == 150);
+
+    return 0;
+}
+
 static char *test_rotate_to_a_new_root_from_right() {
     leaf_t *root = rbtree_create_node(3);
     root->color = BLACK_NODE;
@@ -129,6 +144,7 @@ static char *all_tests() {
     mu_run_test(test_rotate_to_a_new_root_from_left_twice);
     mu_run_test(test_rotate_to_a_new_root_from_right_twice);
     mu_run_test(test_rotate_to_a_new_root_from_right_twice_and_internal_rotation);
+    mu_run_test(test_double_root_rotation);
 
     return 0;
 }

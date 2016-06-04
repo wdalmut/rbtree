@@ -96,10 +96,10 @@ static leaf_t *rbtree_case_4(leaf_t *node)
     leaf_t *old = rbtree_grandfather(node);
 
     if ((node == node->parent->right) && (node->parent == old->left)) {
-        rbtree_rotate_left(node->parent);
+        rbtree_rotate_left(node);
         node = node->left;
     } else if ((node == node->parent->left) && (node->parent == old->right)) {
-        rbtree_rotate_right(node->parent);
+        rbtree_rotate_right(node);
         node = node->right;
     }
 
